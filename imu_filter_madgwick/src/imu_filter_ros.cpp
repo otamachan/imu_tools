@@ -543,15 +543,14 @@ void ImuFilterMadgwickRos::reconfigCallback(
 void ImuFilterMadgwickRos::checkTopicsTimerCallback()
 {
     if (use_mag_)
-        RCLCPP_WARN_STREAM(
-            get_logger(),
-            "Still waiting for data on topics "
-            << imu_subscriber_->getTopic() << "and "
-            << mag_subscriber_->getTopic() << "...");
-    else
         RCLCPP_WARN_STREAM(get_logger(),
-                           "Still waiting for data on topic "
-                           << imu_subscriber_->getTopic() << "...");
+                           "Still waiting for data on topics "
+                               << imu_subscriber_->getTopic() << "and "
+                               << mag_subscriber_->getTopic() << "...");
+    else
+        RCLCPP_WARN_STREAM(get_logger(), "Still waiting for data on topic "
+                                             << imu_subscriber_->getTopic()
+                                             << "...");
 }
 
 #include "rclcpp_components/register_node_macro.hpp"
